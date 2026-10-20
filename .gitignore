@@ -1,0 +1,18 @@
+# Configuração local com a senha do MySQL (nunca enviar ao GitHub)
+.env
+
+# Arquivos gerados pelo Python
+__pycache__/
+*.py[cod]
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+ENV/
+
+# Editores e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
