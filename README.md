@@ -14,7 +14,7 @@ O projeto tem três partes:
 
 | Nome | Matrícula / E-mail |
 |------|--------------------|
-|      |                    |
+|Laura Miranda|laura.miranda2@ufrpe.br|
 |      |                    |
 |      |                    |
 |      |                    |
