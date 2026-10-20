@@ -19,8 +19,8 @@ O projeto tem três partes:
 |      |                    |
 |      |                    |
 
-**Disciplina:** Implementação e Administração de Banco de Dados (IAAD) — UFRPE
-**Professora:**
+**Disciplina:** Introdução ao Armazenamento e Análise de Dados (IAAD) — UFRPE
+**Professora:** Roberta Macêdo Marques Gouveia
 
 ---
 
