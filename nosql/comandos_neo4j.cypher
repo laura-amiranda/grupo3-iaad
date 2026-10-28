@@ -17,6 +17,13 @@
 //
 //  Como usar: abra o Neo4j Browser (ou Neo4j Aura / Sandbox) e execute
 //  um bloco por vez (cada bloco termina com ";").
+//
+//  Para regravar o vídeo: execute o arquivo carga_neo4j.cypher (ou os
+//  blocos 0 a 6 deste roteiro). Ele apaga tudo e recarrega os dados
+//  originais, desfazendo os UPDATE e DELETE já feitos.
+//
+//  Atenção: o bloco 21 dá ERRO de propósito. Se você colar o roteiro
+//  inteiro de uma vez, a execução para nele.
 // =====================================================================
 
 
@@ -164,6 +171,15 @@ MATCH (n) RETURN n;
 
 
 // ---------------------------------------------------------------------
+// 8b) Ver o MODELO do grafo (a "modelagem conceitual")
+//     SQL: equivale a olhar o DER no Workbench.
+//     O Browser desenha um nó por rótulo e uma seta por tipo de
+//     relacionamento: Equipe, Robo, Integrante, Prova e as 3 setas.
+// ---------------------------------------------------------------------
+CALL db.schema.visualization();
+
+
+// ---------------------------------------------------------------------
 // 9) Listar equipes de Recife
 //    SQL: SELECT nome_equipe, escola FROM equipe WHERE cidade = 'Recife';
 // ---------------------------------------------------------------------
@@ -192,6 +208,8 @@ ORDER BY equipe, robo;
 //     OPTIONAL MATCH funciona como o LEFT JOIN: se não achar, devolve null.
 //     A agregação (count, sum) agrupa sozinha pelas outras colunas do RETURN,
 //     então não existe GROUP BY no Cypher.
+//     Resultado esperado: RoboMasters lidera com 193.5; Circuito Vivo e
+//     Equipe Gama aparecem com 0 (têm robôs, mas sem resultados).
 // ---------------------------------------------------------------------
 MATCH (e:Equipe)
 OPTIONAL MATCH (e)<-[:PERTENCE_A]-(r:Robo)
@@ -209,6 +227,7 @@ ORDER BY pontuacao_total DESC, equipe;
 //          LEFT JOIN resultado res ON res.id_robo = r.id_robo
 //          WHERE res.id_robo IS NULL;
 //     No grafo basta perguntar: "não existe a seta PARTICIPOU_DE".
+//     Resultado esperado (rodando na ordem): Spark, Zeus e Hermes.
 // ---------------------------------------------------------------------
 MATCH (r:Robo)-[:PERTENCE_A]->(e:Equipe)
 WHERE NOT EXISTS { (r)-[:PARTICIPOU_DE]->(:Prova) }
@@ -315,6 +334,8 @@ DELETE p;
 // 21) DELETE simples falha se o nó ainda tiver relacionamentos
 //     (parecido com uma FK sem CASCADE, que bloqueia a exclusão do "pai").
 //     Este comando dá ERRO de propósito, pois o robô 13 tem a seta PERTENCE_A:
+//     "Cannot delete node<...>, because it still has relationships."
+//     Nada é apagado; execute-o sozinho e siga para o bloco 22.
 // ---------------------------------------------------------------------
 MATCH (r:Robo {id_robo: 13})
 DELETE r;
@@ -344,6 +365,7 @@ DETACH DELETE e, r, i;
 
 // ---------------------------------------------------------------------
 // 24) Conferir o que sobrou
+//     Resultado esperado: Equipe 7, Integrante 13, Prova 4, Robo 11.
 // ---------------------------------------------------------------------
 MATCH (n)
 RETURN labels(n)[0] AS tipo, count(*) AS quantidade

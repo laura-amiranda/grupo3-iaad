@@ -53,7 +53,8 @@ grupo3-iaad/
 │       ├── trigger.py
 │       └── consultas.py
 ├── nosql/
-│   └── comandos_neo4j.cypher  # minicurso de Neo4j
+│   ├── comandos_neo4j.cypher  # minicurso de Neo4j
+│   └── carga_neo4j.cypher     # apaga e recarrega os dados (reset)
 ├── .env.example               # modelo do arquivo de configuração
 ├── requirements.txt           # bibliotecas Python necessárias
 └── README.md
@@ -191,6 +192,8 @@ O arquivo `nosql/comandos_neo4j.cypher` tem os comandos do minicurso:
 - Comentários comparando cada comando com o SQL equivalente.
 
 **Como executar:** use o **Neo4j Desktop**, o **Neo4j Aura Free** (<https://neo4j.com/cloud/aura-free/>) ou o **Neo4j Sandbox**. Abra o *Neo4j Browser* e execute os blocos um de cada vez, na ordem (cada bloco termina com `;`).
+
+O bloco 8b (`CALL db.schema.visualization()`) desenha o modelo do grafo, e o bloco 21 dá erro de propósito. Para voltar aos dados originais (por exemplo, antes de regravar o vídeo), execute `nosql/carga_neo4j.cypher` com a opção *Enable multi statement query editor* ativada nas configurações do Browser.
 
 ---
 
