@@ -14,10 +14,13 @@ O projeto tem três partes:
 
 | Nome | Matrícula / E-mail |
 |------|--------------------|
-|Laura Miranda|laura.miranda2@ufrpe.br|
-|      |                    |
-|      |                    |
-|      |                    |
+| Diego Luiz dos Santos Silva | |
+| Lucas de Farias Guerra | |
+| Artur Pires de Magalhães Rio | |
+| Pedro Lucca Guimarães Poroca | |
+| Laura Alcântara de Miranda | laura.miranda2@ufrpe.br |
+| Maria Eduarda Alves de Oliveira | |
+| Carolinne Celestino Correa de Amorim | |
 
 **Disciplina:** Introdução ao Armazenamento e Análise de Dados (IAAD) — UFRPE
 **Professora:** Roberta Macêdo Marques Gouveia
