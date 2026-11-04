@@ -6,6 +6,7 @@ MySQL. Assim, a conexão e o tratamento de erros ficam em um lugar só.
 """
 
 import os
+import warnings
 from decimal import Decimal
 from pathlib import Path
 
@@ -92,7 +93,15 @@ def chamar_procedure(nome, argumentos):
     with conectar() as conexao:
         with conexao.cursor() as cursor:
             cursor.callproc(nome, argumentos)
-            for resultado in cursor.stored_results():
+            # Até a versão 26 do conector, stored_results é um método (que já
+            # avisa que vai virar propriedade). Assim o código funciona nas
+            # duas formas, sem mostrar o aviso de "função obsoleta".
+            resultados = cursor.stored_results
+            if callable(resultados):
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore", DeprecationWarning)
+                    resultados = list(resultados())
+            for resultado in resultados:
                 linhas = resultado.fetchall()
                 colunas = resultado.column_names
                 return _decimal_para_float(pd.DataFrame(linhas, columns=colunas))

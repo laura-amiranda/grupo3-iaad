@@ -1,0 +1,12 @@
+# Configuração do Streamlit para este projeto (lida quando o comando
+# "streamlit run app/app.py" é executado a partir da pasta raiz).
+
+[server]
+# Na primeira execução numa máquina nova o Streamlit para no terminal
+# pedindo um e-mail ("Email:") e só abre o navegador depois do Enter.
+# Desligamos esse pedido para o sistema abrir direto.
+showEmailPrompt = false
+
+[browser]
+# Não envia estatísticas de uso para o Streamlit.
+gatherUsageStats = false

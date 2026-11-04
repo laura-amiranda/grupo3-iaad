@@ -1,5 +1,7 @@
-streamlit>=1.38
-mysql-connector-python>=9.0
-pandas>=2.2
-plotly>=5.22
-python-dotenv>=1.0
+# Versões testadas do zero em 04/11/2026 (Python 3.12 e 3.14, MySQL 8.0.46).
+# O limite de cima evita que uma versão futura, ainda não testada, quebre o sistema.
+streamlit>=1.50,<2
+mysql-connector-python>=9.0,<27
+pandas>=2.2,<4
+plotly>=5.22,<8
+python-dotenv>=1.0,<2

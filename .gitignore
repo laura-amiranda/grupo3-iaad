@@ -16,3 +16,6 @@ ENV/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Arquivo .zip da entrega (gerado por montar_zip.py)
+dist/

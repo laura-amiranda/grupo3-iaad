@@ -34,6 +34,8 @@ O projeto tem três partes:
 - **Streamlit** (interface web), **mysql-connector-python** (conexão com o MySQL), **pandas** (tabelas), **plotly** (gráficos), **python-dotenv** (leitura do arquivo `.env`)
 - **Neo4j** (parte NoSQL)
 
+> ✅ Passo a passo testado do zero em 04/11/2026 num Windows 11 sem MySQL instalado, com **MySQL 8.0.46**, **Python 3.12** e **Python 3.14** (Streamlit 1.66, mysql-connector-python 26.10, pandas 3.1, plotly 7.1).
+
 ---
 
 ## 🗂️ Estrutura das pastas
@@ -58,8 +60,11 @@ grupo3-iaad/
 ├── nosql/
 │   ├── comandos_neo4j.cypher  # minicurso de Neo4j
 │   └── carga_neo4j.cypher     # apaga e recarrega os dados (reset)
+├── .streamlit/
+│   └── config.toml            # tira o pedido de e-mail da 1ª execução do Streamlit
 ├── .env.example               # modelo do arquivo de configuração
 ├── requirements.txt           # bibliotecas Python necessárias
+├── montar_zip.py              # monta o .zip da entrega (DER + script + código)
 └── README.md
 ```
 
@@ -99,15 +104,20 @@ Dados iniciais: 8 equipes, 12 robôs, 10 resultados e 15 integrantes. A equipe *
 
 ### Passo 2 — Instalar o MySQL Server e o MySQL Workbench
 
-1. Baixe o **MySQL Installer** em <https://dev.mysql.com/downloads/installer/>.
-2. Instale o **MySQL Server 8.0** e o **MySQL Workbench**.
+1. Baixe o **MySQL Installer** em <https://dev.mysql.com/downloads/installer/> (arquivo `mysql-installer-community-8.0.46.0.msi`, o maior da página, que instala sem precisar de internet). Na tela de download, clique em **"No thanks, just start my download"** para baixar sem criar conta.
+2. Instale o **MySQL Server 8.0** e o **MySQL Workbench** (no instalador, o tipo **"Developer Default"** já traz os dois).
 3. Durante a instalação, **anote a senha que você definir para o usuário `root`**. Ela será usada no Passo 5.
 4. Deixe marcada a opção para iniciar o MySQL como serviço do Windows (padrão).
 
+> Já tem MySQL 8.0, 8.4 ou 9.x instalado? Pode usar o que já tem. O que **não** funciona é o MariaDB (o banco que vem no XAMPP): veja a seção *Problemas comuns*.
+
 ### Passo 3 — Baixar o projeto
 
-- Pelo GitHub: botão verde **Code → Download ZIP**, e depois extraia o ZIP; **ou**
-- Com git: `git clone <endereço do repositório>`
+- Pelo arquivo `.zip` da entrega: clique com o botão direito → **Extrair tudo**. Use a pasta `grupo3-iaad` que aparece dentro dele; **ou**
+- Pelo GitHub (<https://github.com/laura-amiranda/grupo3-iaad>): botão verde **Code → Download ZIP**, e depois extraia o ZIP; **ou**
+- Com git: `git clone https://github.com/laura-amiranda/grupo3-iaad.git`
+
+> Todos os comandos dos próximos passos são rodados **dentro dessa pasta** (a que tem o `README.md` e o `requirements.txt`).
 
 ### Passo 4 — Criar o banco de dados no Workbench
 
@@ -160,6 +170,8 @@ streamlit run app/app.py
 ```
 
 O navegador abre sozinho em **<http://localhost:8501>**. Se não abrir, copie esse endereço no navegador.
+
+> Se o terminal parar em **`Email:`** (pedido do Streamlit na primeira vez que roda numa máquina), basta apertar **Enter** sem digitar nada. O arquivo `.streamlit/config.toml` do projeto já desliga esse pedido; ele só aparece se o comando for rodado fora da pasta do projeto.
 Para parar o sistema, volte ao Prompt de Comando e aperte **Ctrl + C**.
 
 > Da próxima vez, basta abrir o Prompt na pasta do projeto, rodar `.venv\Scripts\activate` e `streamlit run app/app.py`.
@@ -200,6 +212,21 @@ O bloco **8b** (`CALL db.schema.visualization();`) mostra o modelo do grafo, que
 
 ---
 
+## 📦 Montar o .zip da entrega (Arquivo 2)
+
+O Arquivo 2 da entrega é um `.zip` com o DER do Workbench (`.mwb`), o script `.sql` e o código-fonte. Para montar:
+
+1. Salve o DER feito no Workbench (*File → Save Model*) dentro da pasta `banco/` do projeto.
+2. Na pasta do projeto, rode:
+   ```
+   python montar_zip.py
+   ```
+3. O arquivo fica em `dist/grupo3-iaad_entrega.zip`. O script lista o que entrou e avisa se faltar o `.mwb`.
+
+O `.env` (com a senha), a pasta `.venv` e os arquivos `__pycache__` ficam de fora automaticamente.
+
+---
+
 ## 🆘 Problemas comuns
 
 | Problema | Causa provável | Como resolver |
@@ -215,3 +242,6 @@ O bloco **8b** (`CALL db.schema.visualization();`) mostra o modelo do grafo, que
 | No Workbench o script parou no meio | Só um trecho estava selecionado | Clique em qualquer lugar do editor sem selecionar nada e use o raio ⚡ (não o raio com cursor) |
 | `Port 8501 is already in use` | Já existe um Streamlit aberto | Feche o outro Prompt de Comando ou rode `streamlit run app/app.py --server.port 8502` |
 | Acentos aparecem estranhos no Workbench | Arquivo aberto com outra codificação | O script está em UTF-8; abra pelo menu **File → Open SQL Script** do Workbench |
+| O terminal fica parado em `Email:` e o navegador não abre | Pedido de e-mail do Streamlit na primeira execução | Aperte **Enter** sem digitar nada. Para não aparecer mais, rode o comando a partir da pasta do projeto (onde está a pasta `.streamlit`) |
+| `Unknown collation: 'utf8mb4_0900_ai_ci'` ao rodar o script | O banco instalado é MariaDB (XAMPP), não MySQL | Instale o MySQL Server 8.0 pelo **Passo 2**. Se o XAMPP estiver ligado, desligue o MySQL dele antes, pois os dois usam a porta 3306 |
+| `pip install` dá erro de conexão ou demora muito | Sem internet ou rede da instituição bloqueando | O `pip` precisa de internet para baixar as bibliotecas. Tente em outra rede |
