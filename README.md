@@ -170,9 +170,9 @@ streamlit run app/app.py
 ```
 
 O navegador abre sozinho em **<http://localhost:8501>**. Se não abrir, copie esse endereço no navegador.
+Para parar o sistema, volte ao Prompt de Comando e aperte **Ctrl + C**.
 
 > Se o terminal parar em **`Email:`** (pedido do Streamlit na primeira vez que roda numa máquina), basta apertar **Enter** sem digitar nada. O arquivo `.streamlit/config.toml` do projeto já desliga esse pedido; ele só aparece se o comando for rodado fora da pasta do projeto.
-Para parar o sistema, volte ao Prompt de Comando e aperte **Ctrl + C**.
 
 > Da próxima vez, basta abrir o Prompt na pasta do projeto, rodar `.venv\Scripts\activate` e `streamlit run app/app.py`.
 
