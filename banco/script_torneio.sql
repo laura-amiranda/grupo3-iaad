@@ -43,7 +43,7 @@ CREATE TABLE robo (
     nome_robo    VARCHAR(100) NOT NULL,
     categoria    VARCHAR(50),
     data_criacao DATE,
-    id_equipe    INT,
+    id_equipe    INT          NOT NULL,
     CONSTRAINT pk_robo PRIMARY KEY (id_robo),
     CONSTRAINT fk_robo_equipe FOREIGN KEY (id_equipe)
         REFERENCES equipe (id_equipe)
@@ -59,7 +59,7 @@ CREATE TABLE resultado (
     nome_prova    VARCHAR(100) NOT NULL,
     classificacao INT          NOT NULL,
     pontuacao     DECIMAL(6,2),
-    id_robo       INT,
+    id_robo       INT          NOT NULL,
     CONSTRAINT pk_resultado PRIMARY KEY (nome_prova, classificacao),
     CONSTRAINT fk_resultado_robo FOREIGN KEY (id_robo)
         REFERENCES robo (id_robo)
@@ -75,7 +75,7 @@ CREATE TABLE integrante (
     funcao          VARCHAR(50),
     email           VARCHAR(100),
     data_nascimento DATE,
-    id_equipe       INT,
+    id_equipe       INT          NOT NULL,
     CONSTRAINT pk_integrante PRIMARY KEY (id_integrante),
     CONSTRAINT uq_integrante_email UNIQUE (email),
     CONSTRAINT fk_integrante_equipe FOREIGN KEY (id_equipe)
