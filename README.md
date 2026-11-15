@@ -18,7 +18,7 @@ O projeto tem três partes:
 | Lucas de Farias Guerra | |
 | Artur Pires de Magalhães Rio | |
 | Pedro Lucca Guimarães Poroca | |
-| Laura Alcântara de Miranda | laura.miranda2@ufrpe.br |
+| Laura Alcântara de Miranda | |
 | Maria Eduarda Alves de Oliveira | |
 | Carolinne Celestino Correa de Amorim | |
 
