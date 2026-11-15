@@ -12,15 +12,15 @@ O projeto tem três partes:
 
 ## 👥 Integrantes do grupo
 
-| Nome | Matrícula / E-mail |
-|------|--------------------|
-| Diego Luiz dos Santos Silva | |
-| Lucas de Farias Guerra | |
-| Artur Pires de Magalhães Rio | |
-| Pedro Lucca Guimarães Poroca | |
-| Laura Alcântara de Miranda | |
-| Maria Eduarda Alves de Oliveira | |
-| Carolinne Celestino Correa de Amorim | |
+| Nome |
+|------|
+| Diego Luiz dos Santos Silva |
+| Lucas de Farias Guerra |
+| Artur Pires de Magalhães Rio |
+| Pedro Lucca Guimarães Poroca |
+| Laura Alcântara de Miranda |
+| Maria Eduarda Alves de Oliveira |
+| Carolinne Celestino Correa de Amorim |
 
 **Disciplina:** Introdução ao Armazenamento e Análise de Dados (IAAD) — UFRPE
 **Professora:** Roberta Macêdo Marques Gouveia
