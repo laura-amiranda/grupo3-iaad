@@ -9,7 +9,7 @@ O projeto tem três partes:
 3. **NoSQL com Neo4j** (`nosql/comandos_neo4j.cypher`): roteiro de minicurso com os mesmos dados em grafo.
 
 ---
-## 🎥 Vídeos de apresentação fo grupo:
+## 🎥 Vídeos de apresentação do grupo:
 https://drive.google.com/drive/folders/1oBo2zsJZ0QbVbzbG_qg-4yZMileRlMdU?usp=drive_link
 
 ## 👥 Integrantes do grupo
